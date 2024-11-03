@@ -1,0 +1,49 @@
+<section class="bg-main-light rounded-4 shadow p-4 my-2 container-fluids w-75 mx-auto">
+    <h1 class="h2 text-center">Shop Cart</h1>
+    @if (cartDetails.totalCartPrice == 0) {
+        <p class="text-main text-center h2">Your Cart is Empty</p>
+    }@else {
+        <p class="text-main text-center h2">Total Cart Price {{cartDetails.totalCartPrice | currency : "EGP ":'symbol':'1.0-0'}}</p>
+        <div class="p-3 text-end">
+            <button (click)="clearCart()" class=" btn btn-outline-danger">Clear Cart</button>
+        </div>
+    }
+   
+       
+  
+    @for (item of cartDetails.products; track item.product.id) {
+
+        <div class="row mb-3">
+            <div class="col-md-1">
+                <div>
+                    <img [src]="item.product.imageCover" class="w-100" [alt]="item.product.title">
+                </div>
+            </div>
+            <div class="col-md-11 d-flex align-items-center justify-content-between">
+                <div>
+                    <h3>{{item.product.title.split(" ").slice(0, 3).join(" ")}}</h3>
+                    <p class="text-main">Price  {{item.price | currency : "EGP " :'symbol':'1.0-0'}}</p>
+                    <span (click)="removeThisProduct(item.product.id)">Remove Item  <i class="fa-solid fa-trash text-danger cursor"></i></span>
+                </div>
+                <div>
+                    <span ><i (click)="updateCount(item.product.id ,item.count +1 )" class="fa-solid fa-plus-circle cursor text-main"></i></span>
+                    <span class="mx-3">{{item.count}}</span>
+                    <span><i (click)="updateCount(item.product.id ,item.count -1 )" class="fa-solid fa-minus-circle cursor text-main"></i></span>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    }
+
+  @if (cartDetails.totalCartPrice != 0) {
+    <div class="d-flex justify-content-center w-100">
+    
+        <button [routerLink]="['/orders', cartDetails._id]" class="btn btn-primary text-center">Make Order</button>
+       </div>
+  }
+
+
+</section>

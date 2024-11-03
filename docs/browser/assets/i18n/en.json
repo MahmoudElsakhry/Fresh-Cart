@@ -1,0 +1,17 @@
+{
+  "navbar" : {
+    "home" : "Home", 
+    "products" : "Products", 
+    "about" : "About",
+    "contact" : "Contact",
+    "login" : "Login",
+    "register" : "Register",
+    "logout" : "Logout",
+    "cart" : "Cart",
+    "search" : "Search",
+    "lang" : "Lang",
+    "categories" : "Categories",
+    "brands":"Brands"
+  }
+
+}

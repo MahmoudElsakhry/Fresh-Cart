@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand text-warning" href="#">
+      <img src="../../../../assets/freshcart-logo.svg" alt="" />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      @if (isLogin) {
+      <ul class="navbar-nav">
+        <a class="nav-link" routerLink="home" routerLinkActive="">{{
+          "navbar.home" | translate
+        }}</a>
+
+        <a class="nav-link" routerLink="products">{{
+          "navbar.products" | translate
+        }}</a>
+        <a class="nav-link" routerLink="categories">{{
+          "navbar.categories" | translate
+        }}</a>
+        <a class="nav-link" routerLink="brands">{{
+          "navbar.brands" | translate
+        }}</a>
+      </ul>
+      }
+    </div>
+
+    <div class="social d-flex gap-3" id="navbarNav">
+      <a class="nav-link position-relative" routerLink="cart"
+        ><i class="fa-solid fa-cart-shopping fa-2xl text-main"></i>
+        <span class="badge position-absolute bg-info top-50 start-0 p-1 rounded">{{countNumber}}</span>
+      
+    </a>
+      <a href=""><i class="fa-brands fa-twitter"></i></a>
+      <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+      <a href=""><i class="fa-brands fa-instagram"></i></a>
+      <a href=""><i class="fa-brands fa-linkedin"></i></a>
+      <li class="nav-item dropdown d-flex">
+        <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <!-- {{"navbar.lang" | translate}} -->
+          <i class="fa-solid fa-earth-americas"></i>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li [class.bg-info]="_TranslateService.currentLang == 'en' " (click)="change('en')"><a class="dropdown-item" >EN</a></li>
+          <li [class.bg-info]="_TranslateService.currentLang == 'ar' "  (click)="change('ar')"><a class="dropdown-item" >AR</a></li>
+          
+         
+        </ul>
+      </li>
+
+      @if (!isLogin) {
+      <a routerLink="login">Log in</a>
+      <a routerLink="register">Register</a>
+      } @if (isLogin) {
+      <a class="cursor" (click)="logOut()">{{"navbar.logout" | translate}}</a>
+      }
+    </div>
+  </div>
+</nav>
